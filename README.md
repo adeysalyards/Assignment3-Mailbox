@@ -18,4 +18,4 @@ Side Menu
 Shake Gesture
   * [x] Shaking the phone will trigger an undo alert
 
-![alt tag] (https://github.com/adeysalyards/Assignment2-Carousel/blob/master/Walkthrough_v3.gif)
+![alt tag] (https://github.com/adeysalyards/Assignment3-Mailbox/blob/master/Walkthrough.gif)
