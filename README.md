@@ -1,6 +1,5 @@
 # Assignment3-Mailbox
 Recreating Mailbox's cool gesture-based animations!
-# Assignment2-Carousel
 
 Time spent: 20+ hours
 
