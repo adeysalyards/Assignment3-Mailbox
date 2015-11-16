@@ -1,30 +1,21 @@
 //
-//  ComposeViewController.swift
+//  ListViewController.swift
 //  Assignment3-Mailbox
 //
-//  Created by Salyards, Adey on 11/14/15.
+//  Created by Salyards, Adey on 11/15/15.
 //  Copyright © 2015 Salyards, Adey. All rights reserved.
 //
 
 import UIKit
 
-class ComposeViewController: UIViewController {
+class ListViewController: UIViewController {
 
-    var defaults = NSUserDefaults.standardUserDefaults()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        defaults.setBool(true, forKey: "markedMessageForLater")
-        defaults.synchronize()
 
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func didTapX(sender: AnyObject) {
-        dismissViewControllerAnimated(true) { () -> Void in
-        }
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

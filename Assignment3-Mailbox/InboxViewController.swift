@@ -50,6 +50,28 @@ class InboxViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        if motion == .MotionShake {
+            print("Shake!")
+            
+            let emptyAlert = UIAlertController(title: "", message: "Do you want to undo?", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let okAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+            })
+            
+            let noAction = UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+            })
+            
+            emptyAlert.addAction(okAction)
+            emptyAlert.addAction(noAction)
+            presentViewController(emptyAlert, animated: true, completion: nil)
+        }
+    }
+
     override func viewDidAppear(animated: Bool) {
         defaults.synchronize()
         
@@ -59,15 +81,19 @@ class InboxViewController: UIViewController {
     }
     
     func markedMessageForLater() {
-        /*messageView.alpha = 0
-        UIView.animateWithDuration(1, delay: 0, options: [], animations: { () -> Void in
+        UIView.animateWithDuration(0.5, delay: 0, options: [], animations: { () -> Void in
+            self.archiveView.center.y = self.archiveView.center.y - 86
+            }) { (Bool) -> Void in
+        }
+        UIView.animateWithDuration(0.5, delay: 0, options: [], animations: { () -> Void in
+            self.laterView.center.y = self.laterView.center.y - 86
+            }) { (Bool) -> Void in
+        }
+        UIView.animateWithDuration(0.5, delay: 0, options: [], animations: { () -> Void in
             self.feedImage.center.y = self.feedImage.center.y - 86
             }) { (Bool) -> Void in
-        }*/
-        
-        fakeView.backgroundColor = UIColor.redColor()
+        }
     }
-    
     
     @IBAction func didPanMessageGesture(sender: UIPanGestureRecognizer) {
         
@@ -86,6 +112,10 @@ class InboxViewController: UIViewController {
             
             if messageView.center.x >= 161 && messageView.center.x <= 261 {
                 //drag to the right
+                
+                let variableMessageAlpha = convertValue(messageView.center.x, r1Min: 161, r1Max: 261, r2Min: 0, r2Max: 1)
+               
+                archiveButton.alpha = variableMessageAlpha
                 archiveView.alpha = 1
                 laterView.alpha = 0
                 archiveView.backgroundColor = grayColor
@@ -93,14 +123,18 @@ class InboxViewController: UIViewController {
             }else if messageView.center.x >= 261 && messageView.center.x <= 411{
                archiveView.backgroundColor = greenColor
                 self.archiveButton.selected = false
-                archiveButton.center = CGPoint(x: initialCenterArchiveButton.x + translation.x - 80, y: initialCenterArchiveButton.y)
+                archiveButton.center = CGPoint(x: initialCenterArchiveButton.x + translation.x - 88, y: initialCenterArchiveButton.y)
             }else if messageView.center.x >= 411 {
                 archiveView.backgroundColor = redColor
                 self.archiveButton.selected = true
-                archiveButton.center = CGPoint(x: initialCenterArchiveButton.x + translation.x - 80, y: initialCenterArchiveButton.y)
+                archiveButton.center = CGPoint(x: initialCenterArchiveButton.x + translation.x - 88, y: initialCenterArchiveButton.y)
                 
             }else if messageView.center.x <= 161 && messageView.center.x >= 61 {
                 //drag to the left
+                
+                let variableLaterAlpha = convertValue(messageView.center.x, r1Min: 161, r1Max: 61, r2Min: 0, r2Max: 1)
+                
+                laterButton.alpha = abs(variableLaterAlpha)
                 archiveView.alpha = 0
                 laterView.alpha = 1
                 laterView.backgroundColor = grayColor
@@ -117,24 +151,41 @@ class InboxViewController: UIViewController {
             
         }else if sender.state == UIGestureRecognizerState.Ended {
             
-            if location.x >= 60 {
+            archiveButton.center.x = initialCenterArchiveButton.x
+            laterButton.center.x = initialCenterLaterButton.x
+            
+            if messageView.center.x >= 161 && messageView.center.x <= 261 {
                 UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 20, options: [], animations: { () -> Void in
                     self.messageView.center = self.initialCenter
                     }, completion: { (Bool) -> Void in
                 })
-                
-            } else if location.x <= 60 && location.x >= 40 {
-                UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 20, options: [], animations: { () -> Void in
-                    self.messageView.center = self.initialCenter
+            }else if messageView.center.x >= 261 && messageView.center.x <= 411{
+                UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 20, options: [], animations: { () -> Void in
+                    self.messageView.center.x = 600
                     }, completion: { (Bool) -> Void in
                 })
-                
-            } else if location.x <= 40 {
+                markedMessageForLater()
+            }else if messageView.center.x >= 411{
+                UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 20, options: [], animations: { () -> Void in
+                    self.messageView.center.x = 600
+                    }, completion: { (Bool) -> Void in
+                })
+                markedMessageForLater()
+            }else if messageView.center.x <= 61 && messageView.center.x >= -89 {
+                UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 20, options: [], animations: { () -> Void in
+                    self.messageView.center.x = -300
+                    }, completion: { (Bool) -> Void in
+                })
+                laterButton.alpha = 0
                 performSegueWithIdentifier("rescheduleSegue", sender: nil)
+                
+            } else if messageView.center.x <= -89 {
                 UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 20, options: [], animations: { () -> Void in
-                    self.messageView.center = self.initialCenter
+                    self.messageView.center.x = -300
                     }, completion: { (Bool) -> Void in
                 })
+                laterButton.alpha = 0
+                performSegueWithIdentifier("listSegue", sender: nil)
             }
         }
     }
@@ -158,6 +209,9 @@ class InboxViewController: UIViewController {
     }
     
     @IBAction func didPanInbox(sender: UIPanGestureRecognizer) {
+        
+        self.initialCenter = messageView.center
+        
         if sender.state == UIGestureRecognizerState.Began {
             messageViewPanGesture.enabled = false
         }else if sender.state == UIGestureRecognizerState.Changed {

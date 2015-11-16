@@ -89,21 +89,6 @@
                                                 <rect key="frame" x="0.0" y="63" width="320" height="37"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
-                                            <view contentMode="scaleToFill" id="OWs-Jx-cpx">
-                                                <rect key="frame" x="0.0" y="457" width="240" height="128"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LOh-zh-gZv">
-                                                        <rect key="frame" x="97" y="49" width="46" height="30"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <connections>
-                                                            <segue destination="0Cb-iN-bue" kind="modal" id="i1p-vb-sMX"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.66376334429999995" green="0.33521324400000002" blue="0.7215998173" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </view>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="3dt-km-FGQ">
                                                 <rect key="frame" x="54" y="27" width="213" height="29"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -114,13 +99,6 @@
                                                 </segments>
                                                 <color key="tintColor" red="0.2951190173625946" green="0.72383767366409302" blue="0.86617082357406616" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </segmentedControl>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="p5A-DE-jDW">
-                                                <rect key="frame" x="267" y="14.5" width="53" height="50.5"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <segue destination="fJC-jS-eLL" kind="modal" modalTransitionStyle="crossDissolve" id="F05-TU-Rzf"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
@@ -136,7 +114,6 @@
                     <connections>
                         <outlet property="archiveButton" destination="X7z-Zq-e02" id="b88-7n-KLS"/>
                         <outlet property="archiveView" destination="HzI-1c-aYf" id="5YX-j4-o39"/>
-                        <outlet property="fakeView" destination="OWs-Jx-cpx" id="1GD-Qu-LVX"/>
                         <outlet property="feedImage" destination="kUr-mB-Hys" id="C35-7G-j7K"/>
                         <outlet property="hamburgerButton" destination="6cp-no-bZf" id="Vca-lr-eNI"/>
                         <outlet property="inboxView" destination="2Wi-YM-RRW" id="UoZ-Gd-lmy"/>
@@ -146,6 +123,7 @@
                         <outlet property="messageViewPanGesture" destination="Cyr-IU-EFX" id="yIX-ig-Kvq"/>
                         <outlet property="scrollView" destination="FA1-Cz-RQa" id="JGb-UO-7Qn"/>
                         <segue destination="v9x-R4-Wb7" kind="modal" identifier="rescheduleSegue" modalTransitionStyle="crossDissolve" id="9Jf-Hz-tC8"/>
+                        <segue destination="fJC-jS-eLL" kind="modal" identifier="listSegue" modalTransitionStyle="crossDissolve" id="akj-Hb-58h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
