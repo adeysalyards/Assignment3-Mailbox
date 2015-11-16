@@ -28,12 +28,25 @@
                                                 <rect key="frame" x="0.0" y="136" width="320" height="1202"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
+                                            <view contentMode="scaleToFill" id="IxV-Bl-RYQ" userLabel="Later">
+                                                <rect key="frame" x="0.0" y="136" width="320" height="86"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="khY-Ys-Fac">
+                                                        <rect key="frame" x="275" y="30" width="25" height="25"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" image="later_icon"/>
+                                                        <state key="selected" image="list_icon"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.98479419946670532" green="0.83327358961105347" blue="0.051263138651847839" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
                                             <view contentMode="scaleToFill" id="HzI-1c-aYf" userLabel="Archive">
                                                 <rect key="frame" x="0.0" y="136" width="320" height="86"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <button autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="X7z-Zq-e02">
-                                                        <rect key="frame" x="8" y="28" width="32" height="30"/>
+                                                        <rect key="frame" x="18" y="31" width="24" height="23"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <state key="normal" backgroundImage="archive_icon">
@@ -43,19 +56,6 @@
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.4231683611869812" green="0.85825562477111816" blue="0.29800876975059509" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" id="IxV-Bl-RYQ" userLabel="Later">
-                                                <rect key="frame" x="0.0" y="136" width="320" height="86"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="khY-Ys-Fac">
-                                                        <rect key="frame" x="275" y="30" width="25" height="25"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <state key="normal" image="later_icon"/>
-                                                        <state key="selected" image="launch"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.98479419946670532" green="0.83327358961105347" blue="0.051263138651847839" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="message" id="SlB-ze-J8a">
                                                 <rect key="frame" x="1" y="136" width="320" height="86"/>
@@ -151,7 +151,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="Cyr-IU-EFX" userLabel="Message View Pan Gesture Recognizer">
                     <connections>
-                        <action selector="didPanMessage:" destination="BYZ-38-t0r" id="SYh-m7-OdW"/>
+                        <action selector="didPanMessageGesture:" destination="BYZ-38-t0r" id="ZLP-Ms-VS8"/>
                     </connections>
                 </panGestureRecognizer>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="sfq-be-fPa" userLabel="Inbox Pan Gesture Recognizer">
@@ -249,8 +249,8 @@
         <image name="feed" width="320" height="1202"/>
         <image name="help_label" width="320" height="37"/>
         <image name="later_icon" width="25" height="25"/>
-        <image name="launch" width="320" height="568"/>
         <image name="list" width="320" height="568"/>
+        <image name="list_icon" width="25" height="25"/>
         <image name="mail_nav_icon" width="25" height="20"/>
         <image name="menu" width="320" height="568"/>
         <image name="message" width="320" height="86"/>
